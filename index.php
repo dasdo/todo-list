@@ -66,7 +66,7 @@ $todo = new Todo();
                                             <td><?= $task['status'] == 0 ? "En progreso" : "Completada" ?></td>
                                             <td>
                                                 <a href="delete.php?id=<?= $key ?>" class="btn btn-danger">Delete</a>
-                                                <a href="status.php?id=<?= $key ?>" class="btn btn-success ms-1"><?= $task['status'] == 0 ? "Finalizar" : "Desmarcar" ?></a>
+                                                <a href="status.php?id=<?= $key ?>" class="btn btn-<?= $task['status'] == 0 ? "success" : "warning" ?> ms-1"><?= $task['status'] == 0 ? "Finalizar" : "Desmarcar" ?></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -76,7 +76,7 @@ $todo = new Todo();
                                         <td>Total:</td>
                                         <td><?= count($list) ?></td>
                                         <td>&nbsp;</td>
-                                        <td><a href="clear.php" class="btn btn-danger">Eliminar Todo</a></td>
+                                        <td><a href="clear.php" class="btn btn-danger" onclick="return confirm('Quieres eliminar todo?')">Eliminar Todo</a></td>
                                     </tr>
                                 </tfoot>
                             </table>
