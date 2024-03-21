@@ -4,6 +4,11 @@ include "Todo.php";
 
 $todo = new Todo();
 
+if (!isset($_POST['task']) || empty($_POST['task'])) {
+    header("location: index.php?m=Error");
+    exit();
+}
+
 if (isset($_POST['task']) && empty($_POST['id'])) {
     $todo->create($_POST['task']);
     header("location: index.php?m=Success");

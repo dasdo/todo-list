@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "Todo.php";
+include "Alert.php";
 
 $todo = new Todo();
 
@@ -27,7 +28,9 @@ $todo = new Todo();
                         <div class="card-body p-4">
 
                             <h4 class="text-center my-3 pb-3">To Do App</h4>
-
+                            <?php
+                            (new Alert($_GET))->getMessage();
+                            ?>
                             <form method="POST" action="proccess.php" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
                                 <div class="col-12">
                                     <div class="form-outline">
@@ -52,8 +55,8 @@ $todo = new Todo();
                                 </thead>
                                 <tbody>
                                     <?php
-
-                                    foreach ($todo->list() as $key => $task) {
+                                    $list = $todo->list();
+                                    foreach ($list as $key => $task) {
                                     ?>
                                         <tr>
                                             <th scope="row"><?= $key + 1 ?></th>
@@ -68,6 +71,14 @@ $todo = new Todo();
                                         </tr>
                                     <?php } ?>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td><?= count($list) ?></td>
+                                        <td>&nbsp;</td>
+                                        <td><a href="clear.php" class="btn btn-danger">Eliminar Todo</a></td>
+                                    </tr>
+                                </tfoot>
                             </table>
 
                         </div>

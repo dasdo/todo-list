@@ -33,7 +33,7 @@ class Todo
      */
     public function list()
     {
-        return $_SESSION['todo'];
+        return $_SESSION['todo'] ?? [];
     }
 
 
@@ -72,6 +72,16 @@ class Todo
     {
         if (isset($_SESSION['todo'][$key])) {
             $_SESSION['todo'][$key]['task'] = $task;
+        }
+    }
+
+    /**
+     * Empty task list
+     */
+    public function clear()
+    {
+        if (isset($_SESSION['todo'])) {
+            unset($_SESSION['todo']);
         }
     }
 }
